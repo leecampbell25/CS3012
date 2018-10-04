@@ -1,3 +1,6 @@
+-- https://www.youtube.com/watch?v=fW53ckoXUKs
+
+
 module Tree where
 
 -- Define B-Tree as a type
@@ -12,9 +15,19 @@ plant (x:xs) = grow x (plant xs)
 --Grow tree
 grow :: Int -> Tree Int -> Tree Int
 grow x Leaf = (Node x Leaf Leaf)
-grow x (Node i leftBranch rightBranch)
-      | x <= i (Node i (grow x leftBranch) rightBranch)
-      | otherwise = (Node i leftBranch (grow x rightBranch))
+grow x (Node i leftTree rightTree)
+      | x <= i (Node i (grow x leftTree) rightTree)
+      | otherwise = (Node i leftTree (grow x rightTree))
 
 
--- TODO LCA Functions 
+-- TODO LCA Functions
+
+-- DFS fucntion
+
+dfs :: Int -> Tree Int -> [Int]
+dfs x (Node i leftTree rightTree)
+      | x == i = i:[]
+      | x < i = i:(dfs x leftTree)
+      | otherwise = i:(dfs x rightTree)
+
+-- find last common entry in both DFS arrays
