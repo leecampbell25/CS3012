@@ -30,3 +30,12 @@ dfs x (Node i leftTree rightTree)
       | otherwise = i:(dfs x rightTree)
 
 -- find last common entry in both DFS arrays
+
+dfsMatch :: [Int] -> [Int] -> [Int]
+dfsMatch (x:[]) (y:[])
+          | x == y = x:[]
+          | otherwise = []
+
+dfsMatch (x:xs) (y:ys)
+          | x == y = x:(dfsMatch xs ys)
+          | otherwise = []
