@@ -22,6 +22,6 @@ main = hspec $ do
 
 main :: IO ()
 main = hspec $ do
-  describe "Testing tree build" $ do
-    it "returns " $ do
-      plant [5] `shouldBe` 5
+  describe "Testing DFS function" $ do
+    it "returns int[] indicating dfs path to a node " $ do
+      dfs 1 (plant[1,2,10,12,9]) `shouldBe` [9,2,1]
