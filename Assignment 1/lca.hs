@@ -39,3 +39,6 @@ dfsMatch (x:[]) (y:[])
 dfsMatch (x:xs) (y:ys)
           | x == y = x:(dfsMatch xs ys)
           | otherwise = []
+          
+dfsMatch (x:xs) [] = []
+dfsMatch [] (y:ys) = []
