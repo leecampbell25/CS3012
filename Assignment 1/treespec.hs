@@ -25,6 +25,9 @@ main = hspec $ do
       dfs 1 (plant[1,2,10,12,9]) `shouldBe` [9,2,1]
     it "returns int[] indicating dfs path to a node " $ do
       dfs 5 (plant[5,6,2,4,8,20,12]) `shouldBe` [12,8,4,6,5]
+    it "4 is not a node in the tree so should return empty set" $ do
+      dfs 4 (plant[1,2,3]) `shouldBe` []
+
 
   describe "Testing dfsMatch fucntion" $ do
     it "returns int[] of a matching path between two dfs paths" $ do
