@@ -22,10 +22,7 @@ addNodes x (Node i leftTree rightTree)
 -- TODO LCA Functions
 
 lca :: Int -> Int -> Tree Int -> Int
-lca x y tree = (dfsMatch(dfs x tree)(dfs y tree))
-
-arrayToInt:: [Int] -> Int
-arrayToInt x = head x
+lca x y tree = head (dfsMatch(dfs x tree)(dfs y tree))
 
 -- DFS fucntion
 dfs :: Int -> Tree Int -> [Int]
