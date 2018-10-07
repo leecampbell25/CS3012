@@ -17,7 +17,7 @@ addNodes x Leaf = (Node x Leaf Leaf)
 addNodes x (Node i leftTree rightTree)
             | x <= i = (Node i (addNodes x leftTree) rightTree)
             | otherwise = (Node i leftTree (addNodes x rightTree))
-
+addNodes [] = error "no nodes given in the list"
 
 -- TODO LCA Functions
 
