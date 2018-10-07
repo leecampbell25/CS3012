@@ -10,6 +10,7 @@ data Tree a = Leaf | Node a (Tree a) (Tree a) deriving Show
 plant :: [Int] -> Tree Int
 plant (x:[]) = (Node x Leaf Leaf)
 plant (x:xs) = addNodes x (plant xs)
+plant [] = error "no nodes given in the list"
 
 -- Add children to tree
 addNodes:: Int -> Tree Int -> Tree Int
@@ -17,7 +18,6 @@ addNodes x Leaf = (Node x Leaf Leaf)
 addNodes x (Node i leftTree rightTree)
             | x <= i = (Node i (addNodes x leftTree) rightTree)
             | otherwise = (Node i leftTree (addNodes x rightTree))
-
 
 -- TODO LCA Functions
 
@@ -43,3 +43,5 @@ dfsMatch (x:xs) (y:ys)
 
 dfsMatch (x:xs) [] = []
 dfsMatch [] (y:ys) = []
+
+lca :: Int -> Int -> Tree Int -> Int
