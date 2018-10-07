@@ -28,10 +28,12 @@ main = hspec $ do
   --  it "4 is not a node in the tree so should throw anyErrorCall" $ do
   --    dfs 4 (plant[1,2,3]) `shouldThrow` anyErrorCall
 
-
-
   describe "Testing dfsMatch fucntion" $ do
     it "returns int[] of a matching path between two dfs paths" $ do
       dfsMatch (dfs 1 (plant[1,2,10,12,9])) (dfs 1 (plant[1,2,10,12,9]))`shouldBe` [9,2,1]
     it "find the common steps in the dfs paths of node 1 and node 2" $ do
       dfsMatch (dfs 1 (plant[1,2,10,12,9])) (dfs 2 (plant[1,2,10,12,9]))`shouldBe` [9,2]
+
+  describe "Testing LCA fucntion" $ do
+    it "returns int[] of a matching path between two dfs paths" $ do
+      lca 1 2 (plant[1,2,10,12,9])`shouldBe` 9

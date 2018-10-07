@@ -11,6 +11,9 @@ References:
 -- DFS fucntionality:
    1. https://www.youtube.com/watch?v=fW53ckoXUKs
 
+-- Error calling
+  1. http://hackage.haskell.org/package/base-4.12.0.0/docs/Control-Exception.html#t:ErrorCall
+
 -- Thanks also to Jack C for the advice on getting started with this in Haskell
  for the first time.
 
@@ -23,24 +26,24 @@ data Tree a = Leaf | Node a (Tree a) (Tree a) deriving Show
               -- either empty or it's a node that has an element and two sub-trees.
               -- a is polymorphic type
 
--- Plant tree
+-- Order a series of ints in the structure of a b-tree
 plant :: [Int] -> Tree Int
 plant (x:[]) = (Node x Leaf Leaf)
 plant (x:xs) = addNodes x (plant xs)
 plant [] = error "no nodes given in the list"
 
--- Add nodes to tree
+-- Add nodes to the tree
 addNodes:: Int -> Tree Int -> Tree Int
 addNodes x Leaf = (Node x Leaf Leaf)
 addNodes x (Node i leftTree rightTree)
             | x <= i = (Node i (addNodes x leftTree) rightTree)
             | otherwise = (Node i leftTree (addNodes x rightTree))
 
--- LCA Functions
+-- Lowest Common Ancestor Functions
 lca :: Int -> Int -> Tree Int -> Int
-lca x y tree = head (dfsMatch(dfs x tree)(dfs y tree))
+lca x y tree = head(dfsMatch(dfs x tree)(dfs y tree)) -- head extracts the answer from a [] to allow an int to be returned
 
--- DFS fucntion
+-- Depth First Search fucntion
 dfs :: Int -> Tree Int -> [Int]
 dfs x (Node i leftTree rightTree)
       | x == i = i:[]
@@ -48,8 +51,7 @@ dfs x (Node i leftTree rightTree)
       | otherwise = i:(dfs x rightTree)
 dfs x Leaf = error "desired node not in the tree"
 
--- find last common entry in both DFS arrays
-
+-- Find matching DFS paths in full or part
 dfsMatch :: [Int] -> [Int] -> [Int]
 dfsMatch (x:[]) (y:[])
           | x == y = x:[]
