@@ -30,7 +30,7 @@ data Tree a = Leaf | Node a (Tree a) (Tree a) deriving Show
 plant :: [Int] -> Tree Int
 plant (x:[]) = (Node x Leaf Leaf)
 plant (x:xs) = addNodes x (plant xs)
-plant [] = error "no nodes given in the list"
+plant [] = error "Empty list"
 
 -- Add nodes to the tree
 addNodes:: Int -> Tree Int -> Tree Int
@@ -49,7 +49,8 @@ dfs x (Node i leftTree rightTree)
       | x == i = i:[]
       | x < i = i:(dfs x leftTree)
       | otherwise = i:(dfs x rightTree)
-dfs x Leaf = error "desired node not in the tree"
+dfs x Leaf = error "No element"
+
 
 -- Find matching DFS paths in full or part
 dfsMatch :: [Int] -> [Int] -> [Int]
