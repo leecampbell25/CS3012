@@ -28,6 +28,7 @@ dfs x (Node i leftTree rightTree)
       | x == i = i:[]
       | x < i = i:(dfs x leftTree)
       | otherwise = i:(dfs x rightTree)
+dfs x Leaf = error "desired node not in the tree"
 
 -- find last common entry in both DFS arrays
 
@@ -39,6 +40,6 @@ dfsMatch (x:[]) (y:[])
 dfsMatch (x:xs) (y:ys)
           | x == y = x:(dfsMatch xs ys)
           | otherwise = []
-          
+
 dfsMatch (x:xs) [] = []
 dfsMatch [] (y:ys) = []
