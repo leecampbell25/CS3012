@@ -8,7 +8,7 @@ import           Test.QuickCheck
 
 spec :: Spec
 spec = do
-  
+
   --describe "Testing plant function" $ do
   --  it "4 is not a node in the tree so should throw an error" $ do
   --    evaluate (plant[]) `shouldThrow` errorCall "Empty list"
@@ -30,10 +30,3 @@ spec = do
   describe "Testing LCA fucntion" $ do
     it "returns int[] of a matching path between two dfs paths" $ do
       lca 1 2 (plant[1,2,10,12,9])`shouldBe` 9
-
-
-
-
-
-
-
