@@ -3,15 +3,15 @@ module LibSpec where
 import           Lib
 import           Test.Hspec
 import           Test.QuickCheck
---import Control.Exception (evaluate)
+import Control.Exception (evaluate)
 
 
 spec :: Spec
 spec = do
 
-  --describe "Testing plant function" $ do
-  --  it "4 is not a node in the tree so should throw an error" $ do
-  --    evaluate (plant[]) `shouldThrow` errorCall "Empty list"
+  describe "Testing plant function" $ do
+    it "4 is not a node in the tree so should throw an error" $ do
+      evaluate (plant[]) `shouldThrow` errorCall "Empty list"
 
   describe "Testing DFS function" $ do
     it "returns int[] indicating dfs path to a node " $ do
