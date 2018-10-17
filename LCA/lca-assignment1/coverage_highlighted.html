@@ -1,0 +1,79 @@
+
+<!-- saved from url=(0198)file:///Users/lee/github/CS3012/LCA/lca-assignment1/.stack-work/install/x86_64-osx/lts-12.13/8.4.3/hpc/lca-assignment1/lca-assignment1-test/lca-assignment1-0.1.0.0-J4DDbnQaQYXH8pMVUAeDRR/Lib.hs.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style type="text/css">
+span.lineno { color: white; background: #aaaaaa; border-right: solid white 12px }
+span.nottickedoff { background: yellow}
+span.istickedoff { background: white }
+span.tickonlyfalse { margin: -1px; border: 1px solid #f20913; background: #f20913 }
+span.tickonlytrue  { margin: -1px; border: 1px solid #60de51; background: #60de51 }
+span.funcount { font-size: small; color: orange; z-index: 2; position: absolute; right: 20 }
+span.decl { font-weight: bold }
+span.spaces    { background: white }
+</style>
+</head>
+<body>
+<pre><span class="decl"><span class="nottickedoff">never executed</span> <span class="tickonlytrue">always true</span> <span class="tickonlyfalse">always false</span></span>
+</pre>
+<pre><span class="lineno">    1 </span>module Lib
+<span class="lineno">    2 </span>    ( plant,
+<span class="lineno">    3 </span>      addNodes,
+<span class="lineno">    4 </span>      lca,
+<span class="lineno">    5 </span>      dfs,
+<span class="lineno">    6 </span>      dfsMatch,
+<span class="lineno">    7 </span>      Tree(..),
+<span class="lineno">    8 </span>    ) where
+<span class="lineno">    9 </span>
+<span class="lineno">   10 </span>
+<span class="lineno">   11 </span>
+<span class="lineno">   12 </span>
+<span class="lineno">   13 </span>-- Define B-Tree as a type
+<span class="lineno">   14 </span>data Tree a = Leaf | Node a (Tree a) (Tree a) deriving <span class="decl"><span class="nottickedoff">Show</span></span>
+<span class="lineno">   15 </span>              -- either empty or it's a node that has an element and two sub-trees.
+<span class="lineno">   16 </span>              -- a is polymorphic type
+<span class="lineno">   17 </span>
+<span class="lineno">   18 </span>-- Order a series of ints in the structure of a b-tree
+<span class="lineno">   19 </span>plant :: [Int] -&gt; Tree Int
+<span class="lineno">   20 </span><span class="decl"><span class="istickedoff">plant (x:[]) = (Node x Leaf <span class="nottickedoff">Leaf</span>)</span>
+<span class="lineno">   21 </span><span class="spaces"></span><span class="istickedoff">plant (x:xs) = addNodes x (plant xs)</span>
+<span class="lineno">   22 </span><span class="spaces"></span><span class="istickedoff">plant [] = <span class="nottickedoff">error "Empty list"</span></span></span>
+<span class="lineno">   23 </span>
+<span class="lineno">   24 </span>-- Add nodes to the tree
+<span class="lineno">   25 </span>addNodes:: Int -&gt; Tree Int -&gt; Tree Int
+<span class="lineno">   26 </span><span class="decl"><span class="istickedoff">addNodes x Leaf = (Node x Leaf Leaf)</span>
+<span class="lineno">   27 </span><span class="spaces"></span><span class="istickedoff">addNodes x (Node i leftTree rightTree)</span>
+<span class="lineno">   28 </span><span class="spaces">            </span><span class="istickedoff">| x &lt;= i = (Node i (addNodes x leftTree) rightTree)</span>
+<span class="lineno">   29 </span><span class="spaces">            </span><span class="istickedoff">| <span class="tickonlytrue">otherwise</span> = (Node i leftTree (addNodes x rightTree))</span></span>
+<span class="lineno">   30 </span>
+<span class="lineno">   31 </span>-- Lowest Common Ancestor Functions
+<span class="lineno">   32 </span>lca :: Int -&gt; Int -&gt; Tree Int -&gt; Int
+<span class="lineno">   33 </span><span class="decl"><span class="istickedoff">lca x y tree = head(dfsMatch(dfs x tree)(dfs y tree))</span></span> -- head extracts the answer from a [] to allow an int to be returned
+<span class="lineno">   34 </span>
+<span class="lineno">   35 </span>-- Depth First Search fucntion
+<span class="lineno">   36 </span>dfs :: Int -&gt; Tree Int -&gt; [Int]
+<span class="lineno">   37 </span><span class="decl"><span class="istickedoff">dfs x (Node i leftTree rightTree)</span>
+<span class="lineno">   38 </span><span class="spaces">      </span><span class="istickedoff">| x == i = i:[]</span>
+<span class="lineno">   39 </span><span class="spaces">      </span><span class="istickedoff">| x &lt; i = i:(dfs x leftTree)</span>
+<span class="lineno">   40 </span><span class="spaces">      </span><span class="istickedoff">| <span class="tickonlytrue">otherwise</span> = i:(dfs x rightTree)</span>
+<span class="lineno">   41 </span><span class="spaces"></span><span class="istickedoff">dfs x Leaf = <span class="nottickedoff">error "No element"</span></span></span>
+<span class="lineno">   42 </span>
+<span class="lineno">   43 </span>
+<span class="lineno">   44 </span>-- Find matching DFS paths in full or part
+<span class="lineno">   45 </span>dfsMatch :: [Int] -&gt; [Int] -&gt; [Int]
+<span class="lineno">   46 </span><span class="decl"><span class="istickedoff">dfsMatch (x:[]) (y:[])</span>
+<span class="lineno">   47 </span><span class="spaces">          </span><span class="istickedoff">| <span class="tickonlytrue">x == y</span> = x:[]</span>
+<span class="lineno">   48 </span><span class="spaces">          </span><span class="istickedoff">| <span class="nottickedoff">otherwise</span> = <span class="nottickedoff">[]</span></span>
+<span class="lineno">   49 </span><span class="spaces"></span><span class="istickedoff"></span>
+<span class="lineno">   50 </span><span class="spaces"></span><span class="istickedoff">dfsMatch (x:xs) (y:ys)</span>
+<span class="lineno">   51 </span><span class="spaces">          </span><span class="istickedoff">| <span class="tickonlytrue">x == y</span> = x:(dfsMatch xs ys)</span>
+<span class="lineno">   52 </span><span class="spaces">          </span><span class="istickedoff">| <span class="nottickedoff">otherwise</span> = <span class="nottickedoff">[]</span></span>
+<span class="lineno">   53 </span><span class="spaces"></span><span class="istickedoff"></span>
+<span class="lineno">   54 </span><span class="spaces"></span><span class="istickedoff">dfsMatch (x:xs) [] = []</span>
+<span class="lineno">   55 </span><span class="spaces"></span><span class="istickedoff">dfsMatch [] (y:ys) = <span class="nottickedoff">[]</span></span></span>
+<span class="lineno">   56 </span>
+
+</pre>
+
+
+</body></html>

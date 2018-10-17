@@ -11,7 +11,7 @@ module Lib
 
 
 -- Define B-Tree as a type
-data Tree a = Leaf | Node a (Tree a) (Tree a) deriving Show
+data Tree a = Leaf | Node a (Tree a) (Tree a)
               -- either empty or it's a node that has an element and two sub-trees.
               -- a is polymorphic type
 
@@ -52,5 +52,4 @@ dfsMatch (x:xs) (y:ys)
           | otherwise = []
 
 dfsMatch (x:xs) [] = []
-dfsMatch [] (y:ys) = []
-
+--dfsMatch [] (y:ys) = []
