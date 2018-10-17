@@ -38,9 +38,9 @@ spec = do
       dfsMatch (dfs 1 testTree1) (dfs 2 testTree5)`shouldBe` []
     it "find the common steps in the dfs paths of node 1 and node 2" $ do
       dfsMatch (dfs 1 testTree5) (dfs 2 testTree1)`shouldBe` []
-    it "find the common steps in the dfs paths of node 1 and node 2" $ do
+    it "no common path" $ do
       dfsMatch (dfs 1 (plant[1])) (dfs 8 (plant[8]))`shouldBe` []
-    it "this" $ do
+    it "Return error because can't find element in dfs" $ do
       evaluate (dfsMatch (dfs 2 (plant[1])) (dfs 7 (plant[8,1,7])))`shouldThrow` errorCall "No element"
 
 
