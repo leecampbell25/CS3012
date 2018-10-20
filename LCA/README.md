@@ -1,5 +1,7 @@
 <h1> Lowest Common Ancestor </h1>
 
+<h2> Part 1 </h2>
+
 *Task: To implement a function that can calculate the lowest common ancestor in a graph, that may be structured as a binary tree. The grading focus is on your test code.*
 
 <h3> Getting to know Haskell </h3>
@@ -13,6 +15,8 @@ The final implementation with full code coverage lies in **lca-assignment1**.
 
 <h3> Code Coverage results </h3>
 
-![Image of Yaktocat](https://github.com/leecampbell25/CS3012/blob/master/LCA/Screen%20Shot%202018-10-20%20at%2018.18.25.png)
+![Screenshot of Code Coverage](https://github.com/leecampbell25/CS3012/blob/master/LCA/Screen%20Shot%202018-10-20%20at%2018.18.25.png)
+
+<h2> Part 2 </h2>
 
 
