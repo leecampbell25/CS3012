@@ -9,7 +9,7 @@ This is my first attempt at using Haskell for a project, the recommended languag
 
 The project folder **Assignment 1** illustrates my orginal attempt at this task using basic hSpec unit testing. Using the extended deadline date and as I became more familiar with using *Haskell Stack*, I made a branch code_coverage of this attempt and re-arranged it into the *Haskell Stack* project format. This allowed me to expand on the the unit tests to achieve full code coverage using the *Haskell Stack* code coverage feature. 
 
-The final implementation with full code coverage lies in **lca_assignment1**.
+The final implementation with full code coverage lies in **lca-assignment1**.
 
 <h3> Code Coverage results </h3>
 
