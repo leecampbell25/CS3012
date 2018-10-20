@@ -13,6 +13,6 @@ The final implementation with full code coverage lies in **lca_assignment1**.
 
 <h3> Code Coverage results </h3>
 
-
+![Image of Yaktocat](https://github.com/leecampbell25/CS3012/blob/master/LCA/Screen%20Shot%202018-10-20%20at%2018.18.25.png)
 
 
