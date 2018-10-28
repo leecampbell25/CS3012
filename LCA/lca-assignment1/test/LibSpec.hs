@@ -35,8 +35,13 @@ spec :: Spec
 spec = do
 
   describe "Testing DAG LCA" $ do
-    it "returns int[] indicating dfs path to a node" $ do
+    it "return the LCA of node 4 and node 3 in the test DAG" $ do
       dag_lca o 4 3 `shouldBe` 2
+
+  describe "Test Error edge cases" $ do
+    it "Returns error for adding edge that creates a cycle" $ do
+      evaluate (addEdge o 6 4 (Weight 16)) `shouldThrow` errorCall "Cycle detected!"
+
 
 
 --------------------------LCA Binary Tree---------------------------------------

@@ -18,7 +18,6 @@ module Lib
   addEdge,
   topoSort,
   longestPath,
-  weightLongestPath,
   getWeightVertex,
   getWeightEdge,
   lca,
@@ -71,23 +70,23 @@ dfs x Leaf = error "No element"
 -- |Basic Type DAG
 data Dag w = Dag { vertices :: [ Vertex w ]
                , edges :: [ Edge w ]
-               } deriving (Show)
+               } --deriving (Show)
 
 -- |Basic Type Vertex to build a DAG
 data Vertex w = Vertex {vId :: Id
                        , vWeight :: Weight w
-                       } deriving (Show, Eq, Ord)
+                       } --deriving (Show, Eq, Ord)
 
 -- |Basic Type Edge to build a DAG
 data Edge w = Edge { eWeight :: Weight w
                    , origin :: Origin
                    , destination :: Destination
-                   } deriving (Show, Eq, Ord)
+                   } --deriving (Show, Eq, Ord)
 
 -- |Weight, to be assigned to Vertices and Edges
 --Used as type parameter. Additional to Eq and Ord,
 --Weights need to implement Num.
-data Weight w =  Weight w deriving (Show, Eq, Ord)
+data Weight w =  Weight w --deriving (Show, Eq, Ord)
 
 -- |Vertex and Edge Weight extractor functions.
 --Each a function with these type signatures have to be
@@ -114,7 +113,7 @@ class Plus w where
 instance Plus Int where
     plus a b = Weight (a + b)
 
-instance Plus Integer where
+{--instance Plus Integer where
     plus a b = Weight (a + b)
 
 instance Plus Char where
@@ -123,7 +122,7 @@ instance Plus Char where
 instance (Plus w) => Plus [w] where
     plus [] xs = (Weight xs)
     plus xs [] = (Weight xs)
-    plus xs ys = (Weight (xs ++ ys))
+    plus xs ys = (Weight (xs ++ ys)) --}
 
 -- |Type Class Comp for implementing polymorphism
 --All types that shall be used as Weight type
@@ -137,7 +136,7 @@ instance Comp Int where
         | x <= y    = LT
         | otherwise = GT
 
-instance Comp Integer where
+{--instance Comp Integer where
     comp x y
         | x == y    = EQ
         | x <= y    = LT
@@ -153,7 +152,7 @@ instance (Comp w, Eq w, Ord w) => Comp [w] where
     comp x y
         | x == y    = EQ
         | x <= y    = GT
-        | otherwise = LT
+        | otherwise = LT --}
 
 -- |Custom Comparing function to apply Comp w Type Class
 --in maximumBy function
@@ -208,9 +207,6 @@ combs 0 _ = [[]]
 combs _ [] = []
 combs k (x:xs) = map (x:) (combs (k-1) xs) ++ combs k xs
 
-tester :: Dag w -> [([Int],[Int])]
-tester dag = nub $ map (getDestinations (edges dag)) (getOrigins (edges dag))
-
 -- |topoSort creates a topological sorting of the provided dag.
 --The resulting list of Int is based on the Id's of the vertices.
 topoSort :: Dag w -> [Int]
@@ -237,8 +233,8 @@ getOrigins edges = foldl (\acc x -> (origin x):acc ) [] edges
 -- |weightLongestPath determines the weight of the longest path in a given dag
 --the function requires the accessor functions WeightVertex and WeightEdge to
 --be provided as arguments.
-weightLongestPath :: (Plus w, Ord w, Comp w) => Dag w -> Int -> Int -> WeightVertex w -> WeightEdge w -> Weight w
-weightLongestPath a b c wV wE = (Weight (pathCost a wV wE $ longestPath a b c wV wE))
+{--weightLongestPath :: (Plus w, Ord w, Comp w) => Dag w -> Int -> Int -> WeightVertex w -> WeightEdge w -> Weight w
+weightLongestPath a b c wV wE = (Weight (pathCost a wV wE $ longestPath a b c wV wE))--}
 
 -- |longestPath determines the longest/most expensive path from start to end
 --The function taakes a dag, start and end id aswell as the weight extraction functions
@@ -310,7 +306,7 @@ possible' a b c
 dag_lca :: (Plus w, Comp w) => Dag w -> Int -> Int -> Int
 dag_lca a b c  = last $ patternMatch((longestPath a 0 b getWeightVertex getWeightEdge))((longestPath a 0 c getWeightVertex getWeightEdge))
 
--- Find matching DFS paths in full or part
+-- Find matching vector paths in full or part
 patternMatch :: [Int] -> [Int] -> [Int]
 patternMatch (x:[]) (y:[])
           | x == y = x:[]
