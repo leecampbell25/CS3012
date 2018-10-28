@@ -17,7 +17,7 @@ The final implementation with full code coverage lies in **lca-assignment1**.
 
 ![Screenshot of Code Coverage](https://github.com/leecampbell25/CS3012/blob/master/LCA/Screen%20Shot%202018-10-20%20at%2018.18.25.png)
 
-<h2> Part 2 </h2>
+<h2> Part 2 - DAG</h2>
 
 *Task: To enhance your previous LCA solution, implementing as a branch that you must ultimately merge with your master branch, an implementation of LCA that can work for graphs structured in directed acyclic form. *
 
