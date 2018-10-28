@@ -57,7 +57,7 @@ spec = do
       dag_lca o 4 3 `shouldBe` 2
     it "return the LCA of node 5 and node 6 in the test DAG" $ do
       dag_lca o 5 6 `shouldBe` 4
-    it "return the LCA of node 5 and node 6 in the test DAG" $ do
+    it "return the LCA of node 3 and node 6 in the test DAG" $ do
       dag_lca o 3 6 `shouldBe` 2
 
   describe "Test Error edge cases" $ do
