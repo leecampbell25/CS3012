@@ -19,7 +19,7 @@ The final implementation with full code coverage lies in **lca-assignment1**.
 
 <h2> Part 2 - DAG</h2>
 
-*Task: To enhance your previous LCA solution, implementing as a branch that you must ultimately merge with your master branch, an implementation of LCA that can work for graphs structured in directed acyclic form. *
+*Task: To enhance your previous LCA solution, implementing as a branch that you must ultimately merge with your master branch, an implementation of LCA that can work for graphs structured in directed acyclic form.*
 
 
 <h3> Implementation and explantion of project folders </h3>
