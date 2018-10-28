@@ -12,7 +12,7 @@ testTree4 = plant[1]
 testTree5 = plant[8,5,1,2]
 
 ----------------------------LCA DAG---------------------------------------------
-
+---TEST DAG 1----
 a = addVertex (Dag [][]) (Weight (1::Int)) -- 0
 b = addVertex a (Weight 2)                 -- 1
 c = addVertex b (Weight 3)                 -- 2
@@ -30,6 +30,24 @@ m = addEdge l 2 4 (Weight 13)
 n = addEdge m 4 5 (Weight 14)
 o = addEdge n 4 6 (Weight 15)
 
+---TEST DAG 2---
+a2 = addVertex (Dag [][]) (Weight (1::Int)) -- 0
+b2 = addVertex a2 (Weight 2)                 -- 1
+c2 = addVertex b2 (Weight 3)                 -- 2
+d2 = addVertex c2 (Weight 4)                 -- 3
+e2 = addVertex d2 (Weight 5)                 -- 4
+f2 = addVertex e2 (Weight 6)                 -- 5
+g2 = addVertex f2 (Weight 7)                 -- 6
+
+h2 = addEdge g2 0 1 (Weight 8)
+i2 = addEdge h2 0 2 (Weight 9)
+j2 = addEdge i2 1 4 (Weight 10)
+k2 = addEdge j2 1 3 (Weight 11)
+l2 = addEdge k2 2 3 (Weight 12)
+m2 = addEdge l2 2 4 (Weight 13)
+n2 = addEdge m2 4 5 (Weight 14)
+o2 = addEdge n2 4 6 (Weight 15)
+
 ----------------------------Start Tests-----------------------------------------
 spec :: Spec
 spec = do
@@ -37,6 +55,10 @@ spec = do
   describe "Testing DAG LCA" $ do
     it "return the LCA of node 4 and node 3 in the test DAG" $ do
       dag_lca o 4 3 `shouldBe` 2
+    it "return the LCA of node 5 and node 6 in the test DAG" $ do
+      dag_lca o 5 6 `shouldBe` 4
+    it "return the LCA of node 5 and node 6 in the test DAG" $ do
+      dag_lca o 3 6 `shouldBe` 2
 
   describe "Test Error edge cases" $ do
     it "Returns error for adding edge that creates a cycle" $ do
