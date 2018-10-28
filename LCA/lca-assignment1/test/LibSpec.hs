@@ -29,19 +29,19 @@ spec = do
     it "returns int[] indicating dfs path to a node " $ do
       dfs 1 testTree4 `shouldBe` [1]
 
-  describe "Testing dfsMatch fucntion" $ do
+  describe "Testing patternMatch fucntion" $ do
     it "returns int[] of a matching path between two dfs paths" $ do
-      dfsMatch (dfs 1 testTree1) (dfs 1 testTree1)`shouldBe` [9,2,1]
+      patternMatch (dfs 1 testTree1) (dfs 1 testTree1)`shouldBe` [9,2,1]
     it "find the common steps in the dfs paths of node 1 and node 2" $ do
-      dfsMatch (dfs 1 testTree1) (dfs 2 testTree1)`shouldBe` [9,2]
+      patternMatch (dfs 1 testTree1) (dfs 2 testTree1)`shouldBe` [9,2]
     it "find the common steps in the dfs paths of node 1 and node 2" $ do
-      dfsMatch (dfs 1 testTree1) (dfs 2 testTree5)`shouldBe` []
+      patternMatch (dfs 1 testTree1) (dfs 2 testTree5)`shouldBe` []
     it "find the common steps in the dfs paths of node 1 and node 2" $ do
-      dfsMatch (dfs 1 testTree5) (dfs 2 testTree1)`shouldBe` []
+      patternMatch (dfs 1 testTree5) (dfs 2 testTree1)`shouldBe` []
     it "no common path" $ do
-      dfsMatch (dfs 1 (plant[1])) (dfs 8 (plant[8]))`shouldBe` []
+      patternMatch (dfs 1 (plant[1])) (dfs 8 (plant[8]))`shouldBe` []
     it "Return error because can't find element in dfs" $ do
-      evaluate (dfsMatch (dfs 2 (plant[1])) (dfs 7 (plant[8,1,7])))`shouldThrow` errorCall "No element"
+      evaluate (patternMatch (dfs 2 (plant[1])) (dfs 7 (plant[8,1,7])))`shouldThrow` errorCall "No element"
 
 
 

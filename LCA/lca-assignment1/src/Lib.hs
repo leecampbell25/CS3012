@@ -20,14 +20,12 @@ module Lib
   longestPath,
   weightLongestPath,
   getWeightVertex,
-  getWeightEdge
-  dfsMatch,
+  getWeightEdge,
   lca,
   dag_lca,
-  plant
-  addNodes,
-  dfs
-
+  plant,
+  dfs,
+  patternMatch
 ) where
 
 import Data.List
@@ -58,7 +56,7 @@ addNodes x (Node i leftTree rightTree)
 
 -- Lowest Common Ancestor Functions
 lca :: Int -> Int -> Tree Int -> Int
-lca x y tree = head(dfsMatch(dfs x tree)(dfs y tree)) -- head extracts the answer from a [] to allow an int to be returned
+lca x y tree = head(patternMatch(dfs x tree)(dfs y tree)) -- head extracts the answer from a [] to allow an int to be returned
 
 -- Depth First Search fucntion
 dfs :: Int -> Tree Int -> [Int]
@@ -309,17 +307,17 @@ possible' a b c
     | length (filter (\edge -> origin edge == head c && destination edge == ((tail c)!!0)) (edges a)) /= 0 = possible' a b (tail c)
     | otherwise = False
 
-dag_lca :: Dag w -> [Int] -> [Int] -> Int
-dag_lca a b c  = last $ dfsMatch(head(pathList a b))(head(pathList a c)) -- head extracts the answer from a [] to allow an int to be returned
+dag_lca :: (Plus w, Comp w) => Dag w -> Int -> Int -> Int
+dag_lca a b c  = last $ patternMatch((longestPath a 0 b getWeightVertex getWeightEdge))((longestPath a 0 c getWeightVertex getWeightEdge))
 
 -- Find matching DFS paths in full or part
-dfsMatch :: [Int] -> [Int] -> [Int]
-dfsMatch (x:[]) (y:[])
+patternMatch :: [Int] -> [Int] -> [Int]
+patternMatch (x:[]) (y:[])
           | x == y = x:[]
           | otherwise = []
 
-dfsMatch (x:xs) (y:ys)
-          | x == y = x:(dfsMatch xs ys)
+patternMatch (x:xs) (y:ys)
+          | x == y = x:(patternMatch xs ys)
           | otherwise = []
 
-dfsMatch (x:xs) [] = []
+patternMatch (x:xs) [] = []
