@@ -24,7 +24,8 @@ module Lib
   dag_lca,
   plant,
   dfs,
-  patternMatch
+  patternMatch,
+  pathCost
 ) where
 
 import Data.List
@@ -256,7 +257,7 @@ pathCost a wV wE b
 -- |helper function to calculate the weight of a given path.
 pathCost' :: (Plus w) => Dag w -> [Int] -> Weight w -> WeightVertex w -> WeightEdge w -> w
 pathCost' a b c d e
-    |length b == 0 = extractor c
+    -- |length b == 0 = extractor c
     |length b == 1 = extractor $ plus (extractor c)  (d a (b!!0))
     |otherwise     = pathCost' a (tail b) (plus  (extractor(c)) (extractor(plus (d a (b!!0)) (e a (b!!0) (b!!1)))) )  d e
 
@@ -270,7 +271,7 @@ pathList a b = pathList' a (reverse b) [[last b]]
 pathList' :: Dag w -> [Int] -> [[Int]] -> [[Int]]
 pathList' a b c
     | length b == 1 = filter (possible a) [b++x | x <- c]
-    | length (incomingVertices a (head b)) == 0 = pathList' a (tail b) c
+    -- | length (incomingVertices a (head b)) == 0 = pathList' a (tail b) c
     | otherwise = pathList' a (tail b) $ filter (possible a) $ nub $ concat $ [[x:y] ++ c | x <- (incomingVertices a (head b)), y <- c]
 
 -- |chopStartEnd function discards all list entries before start and after end

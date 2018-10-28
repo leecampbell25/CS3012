@@ -42,6 +42,13 @@ spec = do
     it "Returns error for adding edge that creates a cycle" $ do
       evaluate (addEdge o 6 4 (Weight 16)) `shouldThrow` errorCall "Cycle detected!"
 
+  describe "Code coverage extras" $ do
+    it "Returns error for empty path" $ do
+      evaluate (pathCost o getWeightVertex getWeightEdge []) `shouldThrow` errorCall "empty path"
+    it "Sepcial case where 1 element in path" $ do
+      pathCost o getWeightVertex getWeightEdge [1] `shouldBe` 2
+    it "Special case where 2 elements in path" $ do
+      pathCost o getWeightVertex getWeightEdge [0,1] `shouldBe` 11
 
 
 --------------------------LCA Binary Tree---------------------------------------
