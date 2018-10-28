@@ -28,7 +28,7 @@ The final implementation with full code coverage lies in **lca-assignment1** thi
 
 <h3> Code Coverage results </h3>
 
-![Screenshot of Code Coverage](https://github.com/leecampbell25/CS3012/blob/master/LCA/Screen%20Shot%202018-10-20%20at%2018.18.25.png)
+![Screenshot of Code Coverage](https://github.com/leecampbell25/CS3012/blob/master/LCA/DAG%20code%20coverage%20screenshot%20.png)
 
 
 
