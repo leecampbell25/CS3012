@@ -11,7 +11,7 @@ Lowest Common Ancestor 2 |
 ------------ | 
 To enhance your previous LCA solution, implementing as a branch that you must ultimately merge with your master branch, an implementation of LCA that can work for graphs structured in directed acyclic form.| 
 
-<h3> Biography of a influential Software Engineer </h3> 
+<h3> Assignment 2 - Biography of a influential Software Engineer </h3> 
  **Located above**
 
 Biography of a influential Software Engineer| 
