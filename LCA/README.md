@@ -1,5 +1,7 @@
 <h1> Lowest Common Ancestor </h1>
 
+**The final implementation with full code coverage lies in the folder "lca-assignment1"**.
+
 <h2> Part 1 </h2>
 
 *Task: To implement a function that can calculate the lowest common ancestor in a graph, that may be structured as a binary tree. The grading focus is on your test code.*
@@ -10,8 +12,6 @@ This is my first attempt at using Haskell for a project, the recommended languag
 <h3> Implementation and explantion of project folders </h3>
 
 The project folder **Assignment 1** illustrates my orginal attempt at this task using basic hSpec unit testing. Using the extended deadline date and as I became more familiar with using *Haskell Stack*, I made a branch code_coverage of this attempt and re-arranged it into the *Haskell Stack* project format. This allowed me to expand on the the unit tests to achieve full code coverage using the *Haskell Stack* code coverage feature. 
-
-The final implementation with full code coverage lies in **lca-assignment1**.
 
 <h3> Code Coverage results </h3>
 
